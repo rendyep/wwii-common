@@ -2,7 +2,7 @@
 
 namespace WWII\Common\Helper\Collection\MsSQL;
 
-class Department implements \WWII\Common\Helper\HelperCollectionInterface
+class ActiveDepartment implements \WWII\Common\Helper\HelperCollectionInterface
 {
     protected $serviceManager;
 
