@@ -62,8 +62,9 @@ class Paginator extends \Doctrine\ORM\Tools\Pagination\Paginator
         if ($controlFirst < 1) {
             $controlFirst = 1;
             $controlLast = $this->numberOfShownItem;
-        } elseif ($controlLast > $this->getNumberOfPages()) {
-            $controlFirst = $this->getNumberOfPages() - ($this->numberOfShownItem - 1);
+        }
+
+        if ($controlLast > $this->getNumberOfPages()) {
             $controlLast = $this->getNumberOfPages();
         }
 
