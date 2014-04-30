@@ -99,11 +99,11 @@ class Employee implements \WWII\Common\Helper\HelperCollectionInterface
 
     public function isActive($nik)
     {
-        $rsEmployee = $this->databaseManager->prepare('SELECT TOP 1 * FROM t_PALM_PersonnelFileMst
-            WHERE fCode = :nik AND fDFlag = 0');
+        $rsEmployee = $this->databaseManager->prepare("SELECT TOP 1 * FROM t_PALM_PersonnelFileMst"
+            . " WHERE fCode = :nik AND fDFlag = 0");
         $rsEmployee->bindParam(':nik', $nik);
         $rsEmployee->execute();
 
-        return count($rsEmployee->fetch(\PDO::FETCH_ASSOC)) === 1;
+        return count($rsEmployee->fetchAll(\PDO::FETCH_ASSOC)) === 1;
     }
 }
