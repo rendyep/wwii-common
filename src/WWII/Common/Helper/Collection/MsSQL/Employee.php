@@ -29,7 +29,7 @@ class Employee implements \WWII\Common\Helper\HelperCollectionInterface
                 $rsEmployee->bindParam(":nik", '0%');
                 $rsEmployee->execute();
 
-                if ($rsEmployee->rowCount() === 0) {
+                if (count($rsEmployee->fetch(\PDO::FETCH_ASSOC)) === 0) {
                     return null;
                 }
 
@@ -39,7 +39,7 @@ class Employee implements \WWII\Common\Helper\HelperCollectionInterface
                 $rsEmployee->bindParam(":nik", '0%');
                 $rsEmployee->execute();
 
-                if ($rsEmployee->rowCount() === 0) {
+                if (count($rsEmployee->fetch(\PDO::FETCH_ASSOC)) === 0) {
                     return null;
                 }
 
@@ -55,7 +55,7 @@ class Employee implements \WWII\Common\Helper\HelperCollectionInterface
         $rsEmployee->bindParam(':nik', $nik);
         $rsEmployee->execute();
 
-        if ($rsEmployee->rowCount() === 0) {
+        if (count($rsEmployee->fetch(\PDO::FETCH_ASSOC)) === 0) {
             return null;
         }
 
@@ -68,7 +68,7 @@ class Employee implements \WWII\Common\Helper\HelperCollectionInterface
         $rsEmployee->bindValue(':nama', $nama);
         $rsEmployee->execute();
 
-        if ($rsEmployee->rowCount() === 0) {
+        if (count($rsEmployee->fetch(\PDO::FETCH_ASSOC)) === 0) {
             return null;
         }
 
@@ -90,7 +90,7 @@ class Employee implements \WWII\Common\Helper\HelperCollectionInterface
             . " AND fDFlag = {$flag}"
             . " ORDER BY fInDate ASC, fCode ASC");
 
-        if ($rsEmployee->rowCount() === 0) {
+        if (count($rsEmployee->fetch(\PDO::FETCH_ASSOC)) === 0) {
             return null;
         }
 
@@ -104,6 +104,6 @@ class Employee implements \WWII\Common\Helper\HelperCollectionInterface
         $rsEmployee->bindParam(':nik', $nik);
         $rsEmployee->execute();
 
-        return $rsEmployee->rowCount() !== 0;
+        return count($rsEmployee->fetch(\PDO::FETCH_ASSOC)) === 1;
     }
 }

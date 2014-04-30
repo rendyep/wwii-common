@@ -25,7 +25,7 @@ class Department implements \WWII\Common\Helper\HelperCollectionInterface
             ->prepare('SELECT fDeptCode, fDeptName FROM t_BMSM_DeptMst');
         $rsDepartment->execute();
 
-        if ($rsDepartment->rowCount() === 0) {
+        if (count($rsDepartment->fetch(\PDO::FETCH_ASSOC)) === 0) {
             return null;
         }
 
@@ -42,7 +42,7 @@ class Department implements \WWII\Common\Helper\HelperCollectionInterface
         $rsDepartment->bindParam(':kode', $kode);
         $rsDepartment->execute();
 
-        if ($rsDepartment->rowCount() === 0) {
+        if (count($rsDepartment->fetch(\PDO::FETCH_ASSOC)) === 0) {
             return null;
         }
 
@@ -55,7 +55,7 @@ class Department implements \WWII\Common\Helper\HelperCollectionInterface
         $rsDepartment->bindValue(':nama', $nama);
         $rsDepartment->execute();
 
-        if ($rsDepartment->rowCount() === 0) {
+        if (count($rsDepartment->fetch(\PDO::FETCH_ASSOC)) === 0) {
             return null;
         }
 
