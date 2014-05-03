@@ -37,31 +37,31 @@ class CardRecord implements \WWII\Common\Helper\HelperCollectionInterface
         $this->databaseManager = $serviceManager->get('DatabaseManager');
     }
 
-    protected function parseOptions()
+    protected function parseTime(\DateTime $date, $shift, $event)
     {
-        $options = $this->getOptions();
+        $time = array();
 
-        switch ($options['date']->format('N')) {
+        switch ($date->format('N')) {
             //senin
             case 1:
-                switch ($options['shift']) {
+                switch ($shift) {
                     case self::SHIFT_1:
-                        switch ($options['event']) {
+                        switch ($event) {
                             case self::EVENT_IN:
-                                $options['time']['start'] = new \DateTime($options['date']->format('Y-m-d') . ' 06:00:00');
-                                $options['time']['end'] = new \DateTime($options['date']->format('Y-m-d') . ' 08:00:00');
+                                $time['start'] = new \DateTime($date->format('Y-m-d') . ' 06:00:00');
+                                $time['end'] = new \DateTime($date->format('Y-m-d') . ' 08:00:00');
                                 break;
                             case self::EVENT_OUT:
-                                $options['time']['start'] = new \DateTime($options['date']->format('Y-m-d') . ' 16:00:00');
-                                $options['time']['end'] = new \DateTime($options['date']->format('Y-m-d') . ' 18:00:00');
+                                $time['start'] = new \DateTime($date->format('Y-m-d') . ' 16:00:00');
+                                $time['end'] = new \DateTime($date->format('Y-m-d') . ' 18:00:00');
                                 break;
                             case self::EVENT_BREAK_OUT:
-                                $options['time']['start'] = new \DateTime($options['date']->format('Y-m-d') . ' 11:00:00');
-                                $options['time']['end'] = new \DateTime($options['date']->format('Y-m-d') . ' 12:00:00');
+                                $time['start'] = new \DateTime($date->format('Y-m-d') . ' 11:00:00');
+                                $time['end'] = new \DateTime($date->format('Y-m-d') . ' 12:00:00');
                                 break;
                             case self::EVENT_BREAK_IN:
-                                $options['time']['start'] = new \DateTime($options['date']->format('Y-m-d') . ' 12:30:00');
-                                $options['time']['end'] = new \DateTime($options['date']->format('Y-m-d') . ' 13:30:00');
+                                $time['start'] = new \DateTime($date->format('Y-m-d') . ' 12:30:00');
+                                $time['end'] = new \DateTime($date->format('Y-m-d') . ' 13:30:00');
                                 break;
                         }
                         break;
@@ -77,24 +77,24 @@ class CardRecord implements \WWII\Common\Helper\HelperCollectionInterface
             case 3:
             //kamis
             case 4:
-                switch ($options['shift']) {
+                switch ($shift) {
                     case self::SHIFT_1:
-                        switch ($options['event']) {
+                        switch ($event) {
                             case self::EVENT_IN:
-                                $options['time']['start'] = new \DateTime($options['date']->format('Y-m-d') . ' 06:30:00');
-                                $options['time']['end'] = new \DateTime($options['date']->format('Y-m-d') . ' 08:30:00');
+                                $time['start'] = new \DateTime($date->format('Y-m-d') . ' 06:30:00');
+                                $time['end'] = new \DateTime($date->format('Y-m-d') . ' 08:30:00');
                                 break;
                             case self::EVENT_OUT:
-                                $options['time']['start'] = new \DateTime($options['date']->format('Y-m-d') . ' 15:00:00');
-                                $options['time']['end'] = new \DateTime($options['date']->format('Y-m-d') . ' 17:00:00');
+                                $time['start'] = new \DateTime($date->format('Y-m-d') . ' 15:00:00');
+                                $time['end'] = new \DateTime($date->format('Y-m-d') . ' 17:00:00');
                                 break;
                             case self::EVENT_BREAK_OUT:
-                                $options['time']['start'] = new \DateTime($options['date']->format('Y-m-d') . ' 11:00:00');
-                                $options['time']['end'] = new \DateTime($options['date']->format('Y-m-d') . ' 12:00:00');
+                                $time['start'] = new \DateTime($date->format('Y-m-d') . ' 11:00:00');
+                                $time['end'] = new \DateTime($date->format('Y-m-d') . ' 12:00:00');
                                 break;
                             case self::EVENT_BREAK_IN:
-                                $options['time']['start'] = new \DateTime($options['date']->format('Y-m-d') . ' 12:30:00');
-                                $options['time']['end'] = new \DateTime($options['date']->format('Y-m-d') . ' 13:30:00');
+                                $time['start'] = new \DateTime($date->format('Y-m-d') . ' 12:30:00');
+                                $time['end'] = new \DateTime($date->format('Y-m-d') . ' 13:30:00');
                                 break;
                         }
                         break;
@@ -106,24 +106,24 @@ class CardRecord implements \WWII\Common\Helper\HelperCollectionInterface
                 break;
             //jum'at
             case 5:
-                switch ($options['shift']) {
+                switch ($shift) {
                     case self::SHIFT_1:
-                        switch ($options['event']) {
+                        switch ($event) {
                             case self:: EVENT_IN:
-                                $options['time']['start'] = new \DateTime($options['date']->format('Y-m-d') . ' 06:30:00');
-                                $options['time']['end'] = new \DateTime($options['date']->format('Y-m-d') . ' 08:30:00');
+                                $time['start'] = new \DateTime($date->format('Y-m-d') . ' 06:30:00');
+                                $time['end'] = new \DateTime($date->format('Y-m-d') . ' 08:30:00');
                                 break;
                             case self::EVENT_OUT:
-                                $options['time']['start'] = new \DateTime($options['date']->format('Y-m-d') . ' 16:00:00');
-                                $options['time']['end'] = new \DateTime($options['date']->format('Y-m-d') . ' 18:00:00');
+                                $time['start'] = new \DateTime($date->format('Y-m-d') . ' 16:00:00');
+                                $time['end'] = new \DateTime($date->format('Y-m-d') . ' 18:00:00');
                                 break;
                             case self::EVENT_BREAK_OUT:
-                                $options['time']['start'] = new \DateTime($options['date']->format('Y-m-d') . ' 11:00:00');
-                                $options['time']['end'] = new \DateTime($options['date']->format('Y-m-d') . ' 12:00:00');
+                                $time['start'] = new \DateTime($date->format('Y-m-d') . ' 11:00:00');
+                                $time['end'] = new \DateTime($date->format('Y-m-d') . ' 12:00:00');
                                 break;
                             case self::EVENT_BREAK_IN:
-                                $options['time']['start'] = new \DateTime($options['date']->format('Y-m-d') . ' 12:30:00');
-                                $options['time']['end'] = new \DateTime($options['date']->format('Y-m-d') . ' 13:30:00');
+                                $time['start'] = new \DateTime($date->format('Y-m-d') . ' 12:30:00');
+                                $time['end'] = new \DateTime($date->format('Y-m-d') . ' 13:30:00');
                                 break;
                         }
                         break;
@@ -135,16 +135,16 @@ class CardRecord implements \WWII\Common\Helper\HelperCollectionInterface
                 break;
             //sabtu
             case 6:
-                switch ($options['shift']) {
+                switch ($shift) {
                     case self::SHIFT_1:
-                        switch ($options['event']) {
+                        switch ($event) {
                             case self::EVENT_IN:
-                                $options['time']['start'] = new \DateTime($options['date']->format('Y-m-d') . ' 06:30:00');
-                                $options['time']['end'] = new \DateTime($options['date']->format('Y-m-d') . ' 08:30:00');
+                                $time['start'] = new \DateTime($date->format('Y-m-d') . ' 06:30:00');
+                                $time['end'] = new \DateTime($date->format('Y-m-d') . ' 08:30:00');
                                 break;
                             case self::EVENT_OUT:
-                                $options['time']['start'] = new \DateTime($options['date']->format('Y-m-d') . ' 10:30:00');
-                                $options['time']['end'] = new \DateTime($options['date']->format('Y-m-d') . ' 12:30:00');
+                                $time['start'] = new \DateTime($date->format('Y-m-d') . ' 10:30:00');
+                                $time['end'] = new \DateTime($date->format('Y-m-d') . ' 12:30:00');
                                 break;
                             case self::EVENT_BREAK_OUT:
                             case self::EVENT_BREAK_IN:
@@ -160,24 +160,24 @@ class CardRecord implements \WWII\Common\Helper\HelperCollectionInterface
                 break;
             //minggu
             case 7:
-                switch ($options['shift']) {
+                switch ($shift) {
                     case self::SHIFT_1:
-                        switch ($options['event']) {
+                        switch ($event) {
                             case self::EVENT_IN:
-                                $options['time']['start'] = new \DateTime($options['date']->format('Y-m-d') . ' 06:30:00');
-                                $options['time']['end'] = new \DateTime($options['date']->format('Y-m-d') . ' 08:30:00');
+                                $time['start'] = new \DateTime($date->format('Y-m-d') . ' 06:30:00');
+                                $time['end'] = new \DateTime($date->format('Y-m-d') . ' 08:30:00');
                                 break;
                             case self::EVENT_OUT:
-                                $options['time']['start'] = new \DateTime($options['date']->format('Y-m-d') . ' 15:30:00');
-                                $options['time']['end'] = new \DateTime($options['date']->format('Y-m-d') . ' 17:30:00');
+                                $time['start'] = new \DateTime($date->format('Y-m-d') . ' 15:30:00');
+                                $time['end'] = new \DateTime($date->format('Y-m-d') . ' 17:30:00');
                                 break;
                             case self::EVENT_BREAK_OUT:
-                                $options['time']['start'] = new \DateTime($options['date']->format('Y-m-d') . ' 11:00:00');
-                                $options['time']['end'] = new \DateTime($options['date']->format('Y-m-d') . ' 12:00:00');
+                                $time['start'] = new \DateTime($date->format('Y-m-d') . ' 11:00:00');
+                                $time['end'] = new \DateTime($date->format('Y-m-d') . ' 12:00:00');
                                 break;
                             case self::EVENT_BREAK_IN:
-                                $options['time']['start'] = new \DateTime($options['date']->format('Y-m-d') . ' 12:30:00');
-                                $options['time']['end'] = new \DateTime($options['date']->format('Y-m-d') . ' 13:30:00');
+                                $time['start'] = new \DateTime($date->format('Y-m-d') . ' 12:30:00');
+                                $time['end'] = new \DateTime($date->format('Y-m-d') . ' 13:30:00');
                                 break;
                         }
                         break;
@@ -190,7 +190,7 @@ class CardRecord implements \WWII\Common\Helper\HelperCollectionInterface
 
         }
 
-        return $options;
+        return $time;
     }
 
     public function setOptions(array $options)
@@ -200,9 +200,10 @@ class CardRecord implements \WWII\Common\Helper\HelperCollectionInterface
         }
 
         $this->options = array(
-            'date' => $options['date'],
-            'shift' => $options['shift'],
-            'event' => $options['event']
+            'date' => isset($options['date']) ? $options['date'] : null,
+            'shift' => isset($options['shift']) ? $options['shift'] : null,
+            'event' => isset($options['event']) ? $options['event'] : null,
+            'location' => isset($options['location']) ? $options['location'] : null,
         );
     }
 
@@ -212,7 +213,8 @@ class CardRecord implements \WWII\Common\Helper\HelperCollectionInterface
             $this->options = array(
                 'date' => new \DateTime(),
                 'shift' => self::SHIFT_1,
-                'event' => self::EVENT_IN
+                'event' => self::EVENT_IN,
+                'location' => null
             );
         }
 
@@ -221,7 +223,8 @@ class CardRecord implements \WWII\Common\Helper\HelperCollectionInterface
 
     public function getLogCountByShift()
     {
-        $options = $this->parseOptions($this->getOptions());
+        $options = $this->getOptions();
+        $time = $this->parseTime($options['date'], $options['shift'], $options['event']);
 
         $rs = $this->databaseManager->prepare("
             SELECT COUNT(uniqueUserLog.nik) as count
@@ -235,8 +238,8 @@ class CardRecord implements \WWII\Common\Helper\HelperCollectionInterface
             ) uniqueUserLog
         ");
 
-        $rs->bindParam(':timeStart', $options['time']['start']->format('Y-m-d H:i:s'));
-        $rs->bindParam(':timeEnd', $options['time']['end']->format('Y-m-d H:i:s'));
+        $rs->bindParam(':timeStart', $time['start']->format('Y-m-d H:i:s'));
+        $rs->bindParam(':timeEnd', $time['end']->format('Y-m-d H:i:s'));
         $rs->execute();
 
         return $rs->fetch(\PDO::FETCH_OBJ)->count;
