@@ -23,6 +23,7 @@ class InspectionStatus implements \WWII\Common\Helper\HelperCollectionInterface
             && ! $inspectionItem instanceOf \WWII\Domain\Erp\QualityControl\GeneralInspection\PackagingInspectionItem
             && ! $inspectionItem instanceOf \WWII\Domain\Erp\QualityControl\GeneralInspection\WhitewoodInspectionItem
             && ! $inspectionItem instanceOf \WWII\Domain\Erp\QualityControl\GeneralInspection\PembahananPanelInspectionItem
+            && ! $inspectionItem instanceOf \WWII\Domain\Erp\QualityControl\GeneralInspection\PembahananKayuInspectionItem
         ) {
             throw new \Exception('InspectionItem must be instance of one on the list:'
                 . PHP_EOL . '\WWII\Domain\Erp\QualityControl\GeneralInspection\AssemblingInspectionItem'
@@ -30,6 +31,7 @@ class InspectionStatus implements \WWII\Common\Helper\HelperCollectionInterface
                 . PHP_EOL . '\WWII\Domain\Erp\QualityControl\GeneralInspection\PackagingInspectionItem'
                 . PHP_EOL . '\WWII\Domain\Erp\QualityControl\GeneralInspection\WhitewoodInspectionItem'
                 . PHP_EOL . '\WWII\Domain\Erp\QualityControl\GeneralInspection\PembahananPanelInspectionItem'
+                . PHP_EOL . '\WWII\Domain\Erp\QualityControl\GeneralInspection\PembahananKayuInspectionItem'
                 );
         }
 
